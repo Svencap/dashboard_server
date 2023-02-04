@@ -13,4 +13,6 @@ router.post('/googleAuth', controller.googleAuth);
 router.post('/login', controller.login);
 
 
+router.post('/signup', controller.singUp);
+
 export default router;  

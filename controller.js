@@ -25,6 +25,19 @@ class Controller {
     } catch (error) {}
   }
 
+
+  async singUp(req, res) {
+    const { username, email, password } = req.body;
+    if (!req.body) return res.sendStatus(400);
+    try {
+      const createUser = await User.create({ username, email, password });
+
+      const token = jwt.sign({ userId: createUser._id }, process.env.SECRET_KEY);
+      res.send({ username, token });
+    } catch (error) {}
+
+  }
+
   async getUsers(req, res) {
     const { username } = req.body;
     try {
